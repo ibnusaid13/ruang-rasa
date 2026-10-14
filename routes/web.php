@@ -10,6 +10,7 @@ use App\Http\Controllers\PaymentWebhookController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/health', fn () => response('OK', 200)->header('Content-Type', 'text/plain'));
 // ---------- Publik ----------
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
@@ -63,4 +64,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('settings', [Admin\SettingController::class, 'edit'])->name('settings.edit');
     Route::put('settings', [Admin\SettingController::class, 'update'])->name('settings.update');
+
 });

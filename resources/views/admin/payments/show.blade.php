@@ -14,7 +14,6 @@
             <dt>Metode</dt><dd>{{ $payment->method_label }}</dd>
             <dt>Jumlah</dt><dd><strong>{{ Money::rp($payment->amount) }}</strong></dd>
             <dt>Status</dt><dd><span class="badge badge-{{ $payment->status }}">{{ $payment->status_label }}</span></dd>
-            <dt>Referensi</dt><dd>{{ $payment->transaction_reference ?: '—' }}</dd>
             <dt>Dibayar pada</dt><dd>{{ $payment->paid_at?->format('d M Y, H:i') ?: '—' }}</dd>
             @if($payment->admin_note)<dt>Catatan admin</dt><dd>{{ $payment->admin_note }}</dd>@endif
         </dl>

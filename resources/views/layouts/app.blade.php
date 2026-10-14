@@ -58,7 +58,7 @@
             @endif
             <a href="{{ route('home') }}#kontak">Kirim pesan</a>
         </div>
-        <small style="grid-column:1/-1">© {{ date('Y') }} Ruang Rasa. Website demo tugas kuliah.</small>
+        <small style="grid-column:1/-1">© {{ date('Y') }} Ruang Rasa.</small>
     </div>
 </footer>
 
