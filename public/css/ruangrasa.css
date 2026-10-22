@@ -126,6 +126,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.2; margin: 0 0 .5
 .badge-paid { background: #dcf1e4; color: var(--ok); }
 .badge-rejected, .badge-failed { background: #f8dcd8; color: var(--bad); }
 .badge-cancelled { background: #e7e1db; color: #6b5d52; }
+.badge-missing { background: #f8dcd8; color: var(--bad); }
 .badge-refunded { background: #ece0f5; color: #7a4aa0; }
 .badge-processing { background: #dfeaf7; color: var(--info); }
 .badge-ready { background: #fde3d3; color: var(--terracotta-d); }
@@ -238,7 +239,10 @@ tr:hover td { background: #fffaf2; }
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .hero-grid, .layout-2, .detail-grid, .footer-grid { grid-template-columns: 1fr; }
-  .hero-visual { max-width: 380px; margin-inline: auto; order: -1; }
+  /* Tinggi eksplisit: tidak bergantung pada aspect-ratio (kotak foto bisa runtuh jadi 0px di grid 1 kolom). */
+  .hero-visual { width: min(100%, 380px); max-width: 380px; height: min(86vw, 380px); min-height: 240px; aspect-ratio: auto; margin-inline: auto; order: -1; }
+  .hero-slider { min-height: 240px; }
+  .hero-dots { bottom: .2rem; }
   .sticky { position: static; }
   .nav-toggle { display: block; }
   .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--cream); flex-direction: column; padding: 1.2rem; border-bottom: 1px solid var(--beige); align-items: flex-start; }
