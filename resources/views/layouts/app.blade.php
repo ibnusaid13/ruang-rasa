@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Ruang Rasa — Dessert UMKM') </title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}?v={{ @filemtime(public_path('favicon.svg')) }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/ruangrasa.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ruangrasa.css') }}?v={{ @filemtime(public_path('css/ruangrasa.css')) }}">
 </head>
 <body>
 <header class="nav no-print">
@@ -36,12 +37,6 @@
         <div>
             <div class="brand" style="color:var(--cream)">Ruang<span>Rasa</span></div>
             <p>Dessert UMKM dibuat dengan sepenuh rasa.</p>
-            <p>Kelompok 7 </p>
-            <p>Aditya Nurrohmat | 241011701296</p>
-            <p>Ibnu Said | 241011700906</p>
-            <p>Naysila Fanny | 241011700874</p>
-            <p>Putri Naila Nafisa | 241011700915</p>
-
             @if(\App\Models\Setting::get('shop_address', config('shop.contact.address')))
                 <p>📍 {{ \App\Models\Setting::get('shop_address', config('shop.contact.address')) }}</p>
             @endif
@@ -58,14 +53,19 @@
             @endif
             <a href="{{ route('home') }}#kontak">Kirim pesan</a>
         </div>
-        <small style="grid-column:1/-1">© {{ date('Y') }} Ruang Rasa.</small>
+        @php($grp = config('shop.group'))
+        <small style="grid-column:1/-1" id="group-info">
+            <strong>Kelompok {{ $grp['number'] !== '' ? $grp['number'] : '—' }}</strong>
+            · Anggota: {{ count($grp['members']) ? implode(', ', $grp['members']) : '(isi SHOP_GROUP_MEMBERS di .env)' }}
+            <br>© {{ date('Y') }} Ruang Rasa. Website demo tugas kuliah.
+        </small>
     </div>
 </footer>
 
 @if(session('success')) <div data-toast="ok" data-message="{{ session('success') }}" hidden></div> @endif
 @if(session('error')) <div data-toast="error" data-message="{{ session('error') }}" hidden></div> @endif
 
-<script src="{{ asset('js/ruangrasa.js') }}"></script>
+<script src="{{ asset('js/ruangrasa.js') }}?v={{ @filemtime(public_path('js/ruangrasa.js')) }}"></script>
 @stack('scripts')
 </body>
 </html>

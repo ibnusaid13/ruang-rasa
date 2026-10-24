@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Panel Admin') — Ruang Rasa</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}?v={{ @filemtime(public_path('favicon.svg')) }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/ruangrasa.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ruangrasa.css') }}?v={{ @filemtime(public_path('css/ruangrasa.css')) }}">
 </head>
 <body>
 @php($unread = \App\Models\ContactMessage::whereNull('read_at')->count())
@@ -24,7 +25,8 @@
         <a class="side-link" href="{{ route('home') }}">← Ke Website</a>
     </aside>
 
-   <div class="admin-main">
+    <div class="admin-main">
+        <div class="alert alert-warn no-print" style="font-size:.85rem">⚠ Panel admin ini <strong>tanpa login</strong> (khusus demo tugas kuliah). Jangan dipublikasikan ke internet.</div>
         <div class="admin-top">
             <div style="display:flex;gap:.8rem;align-items:center">
                 <button class="btn btn-outline btn-sm side-toggle no-print" type="button">☰ Menu</button>
@@ -40,6 +42,6 @@
         @yield('content')
     </div>
 </div>
-<script src="{{ asset('js/ruangrasa.js') }}"></script>
+<script src="{{ asset('js/ruangrasa.js') }}?v={{ @filemtime(public_path('js/ruangrasa.js')) }}"></script>
 </body>
 </html>
