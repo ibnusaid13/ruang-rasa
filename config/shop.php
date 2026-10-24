@@ -12,6 +12,14 @@
 return [
     'name' => 'Ruang Rasa',
 
+    // Identitas kelompok (tampil di footer). Isi di .env:
+    //   SHOP_GROUP_NUMBER=3
+    //   SHOP_GROUP_MEMBERS="Budi Santoso, Siti Aminah, Andi Wijaya"
+    'group' => [
+        'number' => env('SHOP_GROUP_NUMBER', ''),
+        'members' => array_values(array_filter(array_map('trim', explode(',', (string) env('SHOP_GROUP_MEMBERS', ''))))),
+    ],
+
     'contact' => [
         'address' => env('SHOP_ADDRESS', ''),
         'phone' => env('SHOP_PHONE', ''),

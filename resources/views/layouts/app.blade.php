@@ -53,10 +53,14 @@
             @endif
             <a href="{{ route('home') }}#kontak">Kirim pesan</a>
         </div>
-        @php($grp = config('shop.group'))
+        @php
+            // Aman walau config/shop.php di server belum punya bagian "group" (tidak crash).
+            $grpNumber = (string) config('shop.group.number', '');
+            $grpMembers = (array) config('shop.group.members', []);
+        @endphp
         <small style="grid-column:1/-1" id="group-info">
-            <strong>Kelompok {{ $grp['number'] !== '' ? $grp['number'] : '—' }}</strong>
-            · Anggota: {{ count($grp['members']) ? implode(', ', $grp['members']) : '(isi SHOP_GROUP_MEMBERS di .env)' }}
+            <strong>Kelompok {{ $grpNumber !== '' ? $grpNumber : '—' }}</strong>
+            · Anggota: {{ count($grpMembers) ? implode(', ', $grpMembers) : '(isi SHOP_GROUP_MEMBERS di .env)' }}
             <br>© {{ date('Y') }} Ruang Rasa. Website demo tugas kuliah.
         </small>
     </div>
